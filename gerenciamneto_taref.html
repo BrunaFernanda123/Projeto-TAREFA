@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Tarefas</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: white;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+        nav {
+            background-color: #f5f5f5;
+            padding: 1em;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            margin-right: 10px;
+            border-radius: 5px;
+            background-color: blue;
+        }
+        nav a:hover {
+            background-color: #00CED1;
+        }
+        footer {
+            background-color: blue;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        img {
+            border-radius: 0%;
+            width: 300px;
+            position: right;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn {
+            cursor: pointer;
+            padding: 6px 10px;
+            background-color: blue;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+        .formContainer {
+            max-width: auto;
+            margin: 0px 0px 20px 0px;
+            padding: 17px;
+            background-color: #fff;
+            border-radius: 7px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .formContainer1 {
+            max-width: auto;
+            margin: 3px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 7px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        fieldset {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-bottom: 16px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .btna1 {
+            border-collapse: collapse;
+            cursor: pointer;
+            padding: 6px 10px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
+
+    <script>
+      
+        function atualizarTabela() {
+            var opcaoSelecionada = document.getElementById('opcao').value;
+            var combinacoes = {
+                'opcao1': [
+                    {status: 'Em andamento', usuarioCodigo: '1'},
+                    {status: 'Em andamento', usuarioCodigo: '2'},
+                    {status: 'Em andamento', usuarioCodigo: '3'}
+                ],
+                'opcao2': [
+                    {status: 'Pendente', usuarioCodigo: '4'},
+                    {status: 'Pendente', usuarioCodigo: '5'},
+                    {status: 'Pendente', usuarioCodigo: '6'}
+                ],
+                'opcao3': [
+                    {status: 'Concluído', usuarioCodigo: '7'},
+                    {status: 'Concluído', usuarioCodigo: '8'},
+                    {status: 'Concluído', usuarioCodigo: '9'}
+                ]
+            };
+
+            var combinacao = combinacoes[opcaoSelecionada] || [];
+            var linhas = document.querySelectorAll('table tbody tr');
+
+            linhas.forEach(function(linha, index) {
+                if (index < combinacao.length) {
+                    linha.cells[3].textContent = combinacao[index].status;
+                    linha.cells[4].textContent = combinacao[index].usuarioCodigo;
+                }
+            });
+        }
+
+        
+        function editarStatus(linha) {
+            var statusCell = linha.cells[3];
+            var usuarioCodigoCell = linha.cells[4];
+            
+            var novoStatus = prompt("Digite o novo status:", statusCell.textContent);
+            if (novoStatus !== null) {
+                statusCell.textContent = novoStatus;
+            }
+
+            var novoCodigo = prompt("Digite o novo código do usuário:", usuarioCodigoCell.textContent);
+            if (novoCodigo !== null) {
+                usuarioCodigoCell.textContent = novoCodigo;
+            }
+        }
+
+      
+        function excluirStatus(linha) {
+            linha.cells[3].textContent = ''; 
+            linha.cells[4].textContent = ''; 
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <div>
+            <table border="0">
+                <tr>
+              
+                </tr>   
+            </table>
+        </div>
+    </header>
+
+    <nav>
+        <a href="cadastro-de-Usuários">Cadastro de Usuários</a>
+        <a href="#cadastro-tarefas">Cadastro de Tarefas</a>
+        <a href="#gerenciar-tarefas">Gerenciar Tarefas</a>
+    </nav>
+
+
+    <section id="cadastro-tarefas">
+        <div class="formContainer1">
+            <h1>Cadastro de Tarefas</h1>
+            <form method="POST" action="#" id="cadastroTarefas">
+                <fieldset>
+                    <label for="tardescrição">Descrição</label>
+                    <input type="text" id="tardescrição" name="tardescrição" placeholder="Informe a descrição" required>
+                    <label for="setor">Setor</label>
+                    <input type="text" id="setor" name="setor" placeholder="Informe o setor" required>
+                    <label for="usuario">Usuário</label>
+                    <input type="text" id="usuario" name="usuario" placeholder="Informe o usuário" required>
+                    <label for="prioridade">Prioridade</label>
+                    <input type="text" id="prioridade" name="prioridade" placeholder="Informe a prioridade" required>
+                    <input type="submit" value="Cadastrar" class="btn">
+                </fieldset>
+            </form>
+        </div>
+    </section>
+
+   
+</script>
+</head>
+<body>
+
+<h1>Gerenciamento de Tarefas</h1>
+
+<label for="opcao">Escolha uma opção:</label>
+<select id="opcao" name="opcao" onchange="atualizarTabela()">
+    <option value="opcao1">Opção 1</option>
+    <option value="opcao2">Opção 2</option>
+    <option value="opcao3">Opção 3</option>
+</select>
+
+<hr>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Setor</th>
+            <th>Prioridade</th>
+            <th>Descrição</th>
+            <th>Status</th>
+            <th>Usuário código</th>
+            <th>Ações</th> 
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>TI</td>
+            <td>Baixa</td>
+            <td>Configuração de servidores</td>
+            <td></td> 
+            <td></td>
+            <td>
+                <button onclick="editarStatus(this.closest('tr'))">Editar</button>
+                <button onclick="excluirStatus(this.closest('tr'))">Excluir</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Tecnologia</td>
+            <td>Média</td>
+            <td>Resolução de problemas</td>
+            <td></td> 
+            <td></td>
+            <td>
+                <button onclick="editarStatus(this.closest('tr'))">Editar</button>
+                <button onclick="excluirStatus(this.closest('tr'))">Excluir</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Desenvolvimento</td>
+            <td>Alta</td>
+            <td>Aplicativos e sistemas</td>
+            <td></td> 
+            <td></td>
+            <td>
+                <button onclick="editarStatus(this.closest('tr'))">Editar</button>
+                <button onclick="excluirStatus(this.closest('tr'))">Excluir</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

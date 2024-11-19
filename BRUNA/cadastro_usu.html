@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>USUARIO</title>
+  
+  <style>
+    header {
+      background-color:white;
+      color: #fff;
+      text-align: center;
+      padding: 1em;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    fieldset {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      margin-bottom: 16px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    button {
+      cursor: pointer;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white; 
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3; 
+    }
+
+    nav {
+      background-color: #0056b3;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav a {
+      color: #000;
+      text-decoration: none;
+      padding: 10px 20px;
+      margin-right: 10px;
+      border-radius: 5px;
+      background-color: #0056b3;
+      color: white;
+    }
+
+    nav a:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      background-color: white;
+      color: #fff;
+      text-align: center;
+      padding: 1em;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .formContainer {
+      max-width: auto;
+      margin: 0px 0px 20px 0px;
+      padding: 17px;
+      background-color: #fff;
+      border-radius: 7px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    img {
+      border-radius: 0%;
+      width: 300px;
+      right: 10px;
+      position: right;
+      align-items: center;
+      justify-content: center;
+    }   
+  </style>
+</head>
+<body>
+    <header>
+        <div>
+            <table border="0">
+            </table>
+        </div>
+    </header>
+
+    <nav>
+        <a href="cadastro_usuario.php">Cadastro de Usuários</a>
+        <a href="cadastro_tarefa.php">Cadastro de Tarefas</a>
+        <a href="gerenciar_tarefas.php">Gerenciar Tarefas</a>
+    </nav>
+
+    <?php
+        include("conecta.php");
+    ?>
+
+    <div id="status"></div>
+  
+    <div class="formContainer">
+        <h1>Cadastro de Usuários</h1>
+        <form method="POST" action="#" id="POST">
+            <fieldset>
+                <input type="hidden" id="id" name="id">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Informe o nome" autofocus required>
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" placeholder="Informe o email" required>
+                <button type="submit">Cadastrar</button>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
